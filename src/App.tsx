@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,78 +7,53 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import ParticleBackground from './components/ParticleBackground';
 import ThemeProvider from './components/ThemeProvider';
-import ChatBotModal from './components/ChatBotModal';
 
-const App: React.FC = () => {
-  const getInitialTheme = () => {
-    if (typeof window === 'undefined') return false;
-    const stored = localStorage.getItem('theme');
-    if (stored === 'dark' || stored === 'light') return stored === 'dark';
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  };
-
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    try {
-      return getInitialTheme();
-    } catch {
-      return false;
-    }
-  });
+function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
-    try {
-      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-      if (darkMode) {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-      }
-    } catch (e) {
-      // ignore
-    }
-  }, [darkMode]);
-  const [activeSection, setActiveSection] = useState<string>('hero');
+    const handleScroll = () => {
+      const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 100;
 
-  useEffect(() => {
-    const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
           }
-        });
-      },
-      { threshold: 0.6 }
-    );
+        }
+      }
+    };
 
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <ThemeProvider darkMode={darkMode}>
-      <div className={darkMode ? 'dark' : 'light'}>
-        <Header darkMode={darkMode} setDarkMode={setDarkMode} activeSection={activeSection} />
-        <main className="pt-20">
-          <ParticleBackground darkMode={darkMode} />
+      <div className={`min-h-screen transition-colors duration-500 ${
+        darkMode ? 'bg-slate-900 text-white' : 'bg-gray-50 text-gray-900'
+      }`}>
+        <ParticleBackground darkMode={darkMode} />
+        <Header 
+          darkMode={darkMode} 
+          setDarkMode={setDarkMode} 
+          activeSection={activeSection}
+        />
+        <main>
           <Hero darkMode={darkMode} />
           <About darkMode={darkMode} />
           <Skills darkMode={darkMode} />
           <Projects darkMode={darkMode} />
           <Contact darkMode={darkMode} />
         </main>
-        <ChatBotModal />
       </div>
     </ThemeProvider>
   );
-};
+}
 
 export default App;
-
