@@ -10,7 +10,35 @@ import ThemeProvider from './components/ThemeProvider';
 import ChatBotModal from './components/ChatBotModal';
 
 const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState<boolean>(true);
+  const getInitialTheme = () => {
+    if (typeof window === 'undefined') return false;
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark' || stored === 'light') return stored === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  };
+
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    try {
+      return getInitialTheme();
+    } catch {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+      if (darkMode) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, [darkMode]);
   const [activeSection, setActiveSection] = useState<string>('hero');
 
   useEffect(() => {
@@ -39,7 +67,7 @@ const App: React.FC = () => {
       <div className={darkMode ? 'dark' : 'light'}>
         <Header darkMode={darkMode} setDarkMode={setDarkMode} activeSection={activeSection} />
         <main className="pt-20">
-          <ParticleBackground />
+          <ParticleBackground darkMode={darkMode} />
           <Hero darkMode={darkMode} />
           <About darkMode={darkMode} />
           <Skills darkMode={darkMode} />
