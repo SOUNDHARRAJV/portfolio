@@ -9,14 +9,16 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
   const skillsRef = useRef<HTMLDivElement>(null);
 
   const skills = [
-    { name: 'C Programming', level: 75, category: 'Frontend' },
-    { name: 'TypeScript', level: 60, category: 'Language' },
-    { name: 'Node.js', level: 85, category: 'Backend' },
+    { name: 'Java', level: 85, category: 'Language' },
     { name: 'Python', level: 80, category: 'Language' },
-    { name: 'AWS', level: 75, category: 'Cloud' },
-    { name: 'Docker', level: 70, category: 'DevOps' },
-    { name: 'GraphQL', level: 85, category: 'API' },
-    { name: 'MongoDB', level: 80, category: 'Database' }
+    { name: 'SQL', level: 80, category: 'Database' },
+    { name: 'C Programming', level: 75, category: 'Language' },
+    { name: 'Object Oriented Programming', level: 90, category: 'Concept' },
+    { name: 'Data Structures & Algorithms', level: 75, category: 'Concept' },
+    { name: 'DBMS', level: 85, category: 'Database' },
+    { name: 'Operating Systems', level: 70, category: 'Systems' },
+    { name: 'Computer Networks', level: 70, category: 'Systems' },
+    { name: 'RESTful APIs', level: 80, category: 'API' }
   ];
 
   useEffect(() => {
@@ -138,8 +140,20 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
           
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              'JavaScript', 'React', 'Vue.js', 'Angular', 'Node.js', 'Express',
-              'MongoDB', 'PostgreSQL', 'AWS', 'Docker', 'Kubernetes', 'Git'
+              'Spring Boot (Familiar)',
+              'HTML & CSS',
+              'JavaScript (Basics)',
+              'Git & GitHub',
+              'Linux (Basics)',
+              'Docker (Basics)',
+              'AWS (EC2, S3 Basics)',
+              'Postman',
+              'IntelliJ IDEA',
+              'VS Code',
+              'Jira',
+              'MySQL',
+              'PostgreSQL',
+              'Agile / Scrum Methodology'
             ].map((tech, index) => (
               <div
                 key={tech}
