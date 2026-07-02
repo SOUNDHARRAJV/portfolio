@@ -10,6 +10,11 @@
   body {
     overflow-x: hidden;
   }
+
+  html, body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }
 
 @layer utilities {
@@ -36,7 +41,8 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 0;
+  height: 0;
 }
 
 ::-webkit-scrollbar-track {
@@ -44,16 +50,16 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #06b6d4, #3b82f6);
-  border-radius: 4px;
+  background: transparent;
+  border-radius: 0;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #06b6d4, #3b82f6);
+  background: transparent;
 }
 
 .light ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #f97316, #dc2626);
+  background: transparent;
 }
 
 /* Glass morphism effect */

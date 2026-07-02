@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import ParticleBackground from './components/ParticleBackground';
 import ThemeProvider from './components/ThemeProvider';
+import ChatBotModal from './components/ChatBotModal';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -51,6 +52,7 @@ function App() {
           <Projects darkMode={darkMode} />
           <Contact darkMode={darkMode} />
         </main>
+        <ChatBotModal darkMode={darkMode} />
       </div>
     </ThemeProvider>
   );

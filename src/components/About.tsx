@@ -1,5 +1,7 @@
 import React from 'react';
-import { Code, Palette, Zap, Heart } from 'lucide-react';
+import { Code, Sprout, Brain, GraduationCap } from 'lucide-react';
+import srkImage from './srk.png';
+import srkTravelImage from './srk-travel.jpg';
 
 interface AboutProps {
   darkMode: boolean;
@@ -9,23 +11,23 @@ const About: React.FC<AboutProps> = ({ darkMode }) => {
   const features = [
     {
       icon: Code,
-      title: 'Clean Code',
-      description: 'Writing maintainable, scalable code with best practices'
+      title: 'Full-Stack Builder',
+      description: 'React, TypeScript, Tailwind, Supabase & Firebase — shipped end to end'
     },
     {
-      icon: Palette,
-      title: 'Creative Design',
-      description: 'Crafting beautiful, user-centered design experiences'
+      icon: Brain,
+      title: 'DSA Focused',
+      description: '350+ LeetCode problems solved with a strong CS fundamentals base'
     },
     {
-      icon: Zap,
-      title: 'Performance',
-      description: 'Optimizing for speed and seamless user interactions'
+      icon: Sprout,
+      title: 'AgriTech Edge',
+      description: 'Family runs SRK Farms — a real-world lens most developers don\'t have'
     },
     {
-      icon: Heart,
-      title: 'Passion',
-      description: 'Dedicated to creating meaningful digital solutions'
+      icon: GraduationCap,
+      title: 'Self-Taught',
+      description: 'Learned full-stack development independently, outside the classroom'
     }
   ];
 
@@ -56,13 +58,13 @@ const About: React.FC<AboutProps> = ({ darkMode }) => {
               <p className={`text-lg leading-relaxed ${
                 darkMode ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                I'm a passionate full-stack developer with over 5 years of experience crafting digital experiences that make a difference. I specialize in modern web technologies and have a keen eye for design.
+                I'm a final-year Agricultural Engineering student at Bannari Amman Institute of Technology who taught myself full-stack development — React, TypeScript, Tailwind CSS, Supabase, and Firebase — and built it into a rare AgriTech-meets-software profile.
               </p>
               
               <p className={`text-lg leading-relaxed ${
                 darkMode ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                When I'm not coding, you'll find me exploring new technologies, contributing to open source projects, or sharing knowledge with the developer community.
+                My family runs SRK Farms, and that hands-on agricultural background shapes how I approach engineering problems. Outside of building products, I've solved 350+ problems on LeetCode and competed in hackathons including SIH 2025 and Hacksagon 2026.
               </p>
             </div>
 
@@ -98,37 +100,54 @@ const About: React.FC<AboutProps> = ({ darkMode }) => {
           </div>
 
           {/* Image with 3D Effects */}
-          <div className="relative">
-            <div className={`absolute inset-0 rounded-3xl blur-3xl transition-all duration-500 ${
+          <div className="relative mx-auto lg:mx-0 w-full max-w-2xl lg:pl-6">
+            <div className={`absolute inset-2 rounded-[2rem] blur-3xl transition-all duration-500 ${
               darkMode 
                 ? 'bg-gradient-to-br from-cyan-400/20 to-blue-600/20' 
                 : 'bg-gradient-to-br from-orange-400/20 to-red-600/20'
             }`} />
             
-            <div className={`relative rounded-3xl overflow-hidden border-2 transition-all duration-500 hover:scale-105 hover:rotate-1 ${
-              darkMode 
-                ? 'border-cyan-400/30 shadow-2xl shadow-cyan-500/20' 
-                : 'border-orange-400/30 shadow-2xl shadow-orange-500/20'
-            }`}>
-              <img
-                src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="About"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-            </div>
-
-            {/* Floating Elements */}
-            <div className={`absolute -top-6 -right-6 w-24 h-24 rounded-2xl backdrop-blur-sm border animate-float ${
-              darkMode 
-                ? 'bg-slate-800/50 border-cyan-500/30' 
-                : 'bg-white/50 border-orange-500/30'
-            }`}>
-              <div className={`w-full h-full rounded-2xl bg-gradient-to-br opacity-50 ${
+            <div className="relative grid grid-cols-2 gap-4 items-stretch">
+              <div className={`relative aspect-[4/5] rounded-[2rem] overflow-hidden border-2 transition-all duration-700 animate-float ${
                 darkMode 
-                  ? 'from-cyan-400/20 to-blue-600/20' 
-                  : 'from-orange-400/20 to-red-600/20'
-              }`} />
+                  ? 'border-cyan-400/30 shadow-2xl shadow-cyan-500/20' 
+                  : 'border-orange-400/30 shadow-2xl shadow-orange-500/20'
+              }`}>
+                <div className={`absolute inset-0 opacity-70 ${
+                  darkMode
+                    ? 'bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.18),transparent_55%)]'
+                    : 'bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.18),transparent_55%)]'
+                }`} />
+                <div className={`absolute -top-3 -right-3 w-20 h-20 rounded-full blur-2xl ${
+                  darkMode ? 'bg-cyan-400/20' : 'bg-orange-400/20'
+                }`} />
+                <img
+                  src={srkImage}
+                  alt="Soundhar Raj V"
+                  className="w-full h-full object-cover scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+
+              <div className={`relative aspect-[4/5] rounded-[2rem] overflow-hidden border-2 transition-all duration-700 animate-float-delay ${
+                darkMode 
+                  ? 'border-cyan-400/30 shadow-2xl shadow-cyan-500/20' 
+                  : 'border-orange-400/30 shadow-2xl shadow-orange-500/20'
+              }`}>
+                <img
+                  src={srkTravelImage}
+                  alt="Soundhar Raj on a trip"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/30 backdrop-blur-md border border-white/10">
+                  <p className={`text-xs font-medium tracking-wide ${
+                    darkMode ? 'text-gray-100' : 'text-white'
+                  }`}>
+                    off the clock
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

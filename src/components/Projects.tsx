@@ -10,54 +10,31 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
 
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with React, Node.js, and Stripe integration',
-      longDescription: 'A comprehensive e-commerce platform featuring user authentication, product management, shopping cart functionality, payment processing with Stripe, order tracking, and admin dashboard. Built with modern technologies for optimal performance and user experience.',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'JWT'],
-      github: '#',
-      live: '#',
+      title: 'Centralised Approval Management Portal',
+      description: 'A role-based change approval and workflow platform built for institutional use',
+      longDescription: 'CAMP streamlines request-and-approval workflows: users submit change requests while administrators review, approve, or reject them through a role-based access system. Includes structured approval workflows, responsive UI, and full request tracking for transparency in decision-making. Built with Supabase and PostgreSQL row-level security (RLS), and deployed on Netlify. This is my capstone project.',
+      technologies: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS'],
+      github: 'https://github.com/SOUNDHARRAJV/change-approval-system',
+      live: 'https://changeapprovalsystem.netlify.app/',
       category: 'Full Stack'
     },
     {
-      title: 'Smart Notes',
-      description: 'A collaborative notes sharing application with real-time updates',
-      longDescription: 'A sophisticated notes sharing application featuring real-time collaboration, drag-and-drop interfaces, team management, project timelines, file attachments, and detailed analytics. Perfect for teams looking to boost productivity.',
-      image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['Typescript', 'Tailwind.css', 'tsx', 'PostgreSQL'],
-      github: '#',
-      live: '#',
+      title: 'SmartNotes',
+      description: 'AI-powered note sharing and summarization platform for students',
+      longDescription: 'A web platform enabling students to upload, organize, and summarize academic notes for efficient study management. Features structured note categorization for easy discovery, a searchable interface, and a Firebase backend for secure, scalable data storage. I led the project team through full-stack development and delivery.',
+      technologies: ['React', 'TypeScript', 'Firebase', 'CSS'],
+      github: 'https://github.com/SOUNDHARRAJV/SmartNotes',
+      live: 'https://smartnotesbit.netlify.app',
       category: 'Web App'
     },
     {
-      title: 'Portfolio Website',
-      description: 'A responsive portfolio website with smooth animations and dark mode',
-      longDescription: 'A modern, responsive portfolio website featuring smooth scroll animations, dark/light theme toggle, contact forms, project showcases, and optimized performance. Built with attention to detail and user experience.',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-      github: '#',
+      title: 'SRK Farms',
+      description: 'Farm-to-home product listing platform for my family\'s farm business',
+      longDescription: 'A responsive web application with 10+ product listing pages, optimized for mobile and desktop. Includes a contact-based ordering workflow that connects customers directly with the farm, organized product sections, and an intuitive browsing experience — built to bring my family\'s AgriTech business online.',
+      technologies: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/SOUNDHARRAJV/srk-ecom-farm',
       live: '#',
       category: 'Frontend'
-    },
-    {
-      title: 'Weather Dashboard',
-      description: 'A comprehensive weather dashboard with interactive maps and forecasts',
-      longDescription: 'A feature-rich weather dashboard providing current conditions, extended forecasts, interactive weather maps, location search, favorite locations, and weather alerts. Designed for weather enthusiasts and professionals.',
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['React', 'Weather API', 'Chart.js', 'Leaflet'],
-      github: '#',
-      live: '#',
-      category: 'Web App'
-    },
-    {
-      title: 'Gen-AI Guided After Sales Assistant',
-      description: 'Analytics dashboard for social media performance tracking',
-      longDescription: 'A comprehensive social media analytics platform featuring multi-platform integration, real-time metrics, engagement tracking, audience insights, content performance analysis, and automated reporting.',
-      image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['Angular', 'D3.js', 'Python', 'FastAPI'],
-      github: '#',
-      live: '#',
-      category: 'Ongoing'
     }
   ];
 
@@ -127,17 +104,20 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
               onClick={() => setSelectedProject(index)}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                
+              {/* Project Header */}
+              <div className={`relative h-40 overflow-hidden flex items-center justify-center transition-all duration-500 group-hover:scale-105 ${
+                darkMode
+                  ? 'bg-gradient-to-br from-cyan-500/20 via-slate-800 to-blue-600/20'
+                  : 'bg-gradient-to-br from-orange-500/20 via-white to-red-600/20'
+              }`}>
+                <span className={`text-4xl font-bold tracking-tight ${
+                  darkMode ? 'text-cyan-400/40' : 'text-orange-500/40'
+                }`}>
+                  {project.title.split(' ').map(w => w[0]).slice(0, 3).join('')}
+                </span>
+
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40">
                   <div className={`px-6 py-3 rounded-full backdrop-blur-sm border text-white font-medium ${
                     darkMode ? 'border-cyan-400/50' : 'border-orange-400/50'
                   }`}>
@@ -198,6 +178,8 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
                 <div className="flex space-x-4">
                   <a
                     href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`p-2 rounded-lg transition-colors duration-300 ${
                       darkMode 
                         ? 'text-gray-400 hover:text-cyan-400 hover:bg-slate-800/50' 
@@ -207,17 +189,21 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
                   >
                     <Github className="w-5 h-5" />
                   </a>
-                  <a
-                    href={project.live}
-                    className={`p-2 rounded-lg transition-colors duration-300 ${
-                      darkMode 
-                        ? 'text-gray-400 hover:text-cyan-400 hover:bg-slate-800/50' 
-                        : 'text-gray-600 hover:text-orange-600 hover:bg-gray-100'
-                    }`}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </a>
+                  {project.live !== '#' && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-2 rounded-lg transition-colors duration-300 ${
+                        darkMode 
+                          ? 'text-gray-400 hover:text-cyan-400 hover:bg-slate-800/50' 
+                          : 'text-gray-600 hover:text-orange-600 hover:bg-gray-100'
+                      }`}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -251,11 +237,17 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
               </button>
 
               <div className="p-8">
-                <img
-                  src={filteredProjects[selectedProject].image}
-                  alt={filteredProjects[selectedProject].title}
-                  className="w-full h-64 object-cover rounded-xl mb-6"
-                />
+                <div className={`w-full h-40 rounded-xl mb-6 flex items-center justify-center ${
+                  darkMode
+                    ? 'bg-gradient-to-br from-cyan-500/20 via-slate-800 to-blue-600/20'
+                    : 'bg-gradient-to-br from-orange-500/20 via-white to-red-600/20'
+                }`}>
+                  <span className={`text-5xl font-bold tracking-tight ${
+                    darkMode ? 'text-cyan-400/40' : 'text-orange-500/40'
+                  }`}>
+                    {filteredProjects[selectedProject].title.split(' ').map(w => w[0]).slice(0, 3).join('')}
+                  </span>
+                </div>
 
                 <div className="space-y-6">
                   <div>
@@ -304,6 +296,8 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
                   <div className="flex space-x-4 pt-4">
                     <a
                       href={filteredProjects[selectedProject].github}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`flex items-center space-x-2 px-6 py-3 rounded-full border transition-all duration-300 hover:scale-105 ${
                         darkMode 
                           ? 'border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10' 
@@ -313,17 +307,21 @@ const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
                       <Github className="w-5 h-5" />
                       <span>View Code</span>
                     </a>
-                    <a
-                      href={filteredProjects[selectedProject].live}
-                      className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 ${
-                        darkMode 
-                          ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25' 
-                          : 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg shadow-orange-500/25'
-                      }`}
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                      <span>Live Demo</span>
-                    </a>
+                    {filteredProjects[selectedProject].live !== '#' && (
+                      <a
+                        href={filteredProjects[selectedProject].live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 ${
+                          darkMode 
+                            ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25' 
+                            : 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg shadow-orange-500/25'
+                        }`}
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

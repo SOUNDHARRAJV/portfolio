@@ -4,22 +4,22 @@ interface SkillsProps {
   darkMode: boolean;
 }
 
+const skills = [
+  { name: 'React', level: 90, category: 'Frontend' },
+  { name: 'TypeScript', level: 85, category: 'Language' },
+  { name: 'JavaScript', level: 85, category: 'Language' },
+  { name: 'Tailwind CSS', level: 90, category: 'Frontend' },
+  { name: 'Supabase', level: 80, category: 'Backend' },
+  { name: 'Firebase', level: 80, category: 'Backend' },
+  { name: 'Python', level: 80, category: 'Language' },
+  { name: 'Java', level: 80, category: 'Language' },
+  { name: 'SQL / PostgreSQL', level: 80, category: 'Database' },
+  { name: 'Data Structures & Algorithms', level: 85, category: 'Concept' }
+];
+
 const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
   const [visibleSkills, setVisibleSkills] = useState<boolean[]>([]);
   const skillsRef = useRef<HTMLDivElement>(null);
-
-  const skills = [
-    { name: 'Java', level: 85, category: 'Language' },
-    { name: 'Python', level: 80, category: 'Language' },
-    { name: 'SQL', level: 80, category: 'Database' },
-    { name: 'C Programming', level: 75, category: 'Language' },
-    { name: 'Object Oriented Programming', level: 90, category: 'Concept' },
-    { name: 'Data Structures & Algorithms', level: 75, category: 'Concept' },
-    { name: 'DBMS', level: 85, category: 'Database' },
-    { name: 'Operating Systems', level: 70, category: 'Systems' },
-    { name: 'Computer Networks', level: 70, category: 'Systems' },
-    { name: 'RESTful APIs', level: 80, category: 'API' }
-  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -140,20 +140,14 @@ const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
           
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              'Spring Boot (Familiar)',
-              'HTML & CSS',
-              'JavaScript (Basics)',
+              'HTML5 & CSS3',
+              'Responsive Web Design',
+              'C Programming',
+              'Object-Oriented Programming',
               'Git & GitHub',
-              'Linux (Basics)',
-              'Docker (Basics)',
-              'AWS (EC2, S3 Basics)',
-              'Postman',
-              'IntelliJ IDEA',
-              'VS Code',
-              'Jira',
               'MySQL',
-              'PostgreSQL',
-              'Agile / Scrum Methodology'
+              'VS Code',
+              'Software Development'
             ].map((tech, index) => (
               <div
                 key={tech}

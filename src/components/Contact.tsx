@@ -15,6 +15,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -44,7 +45,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
@@ -53,14 +54,29 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
 
     setIsSubmitting(true);
     setErrors({});
+    setStatusMessage('');
 
-    // Simulate form submission
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(payload.error || 'Unable to send message');
+      }
+
       setSubmitStatus('success');
+      setStatusMessage('Message sent. I will reply by email as soon as possible.');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
+      setStatusMessage('Message could not be sent. Please try again or email me directly.');
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setSubmitStatus('idle'), 3000);
@@ -82,7 +98,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
       icon: Mail,
       title: 'Email',
       value: 'soundharrajvellingiri@gmail.com',
-      href: 'mailto:hello@example.com'
+      href: 'mailto:soundharrajvellingiri@gmail.com'
     },
     {
       icon: Phone,
@@ -93,8 +109,8 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
     {
       icon: MapPin,
       title: 'Location',
-      value: 'TIRUPPUR,TAMIL NADU',
-      href: '#'
+      value: 'Tiruppur, Tamil Nadu, India',
+      href: 'https://www.google.com/maps/search/Tiruppur,+Tamil+Nadu'
     }
   ];
 
@@ -102,7 +118,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
     <section id="contact" className="py-20 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className={`text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r bg-clip-text text-transparent ${
+          <h2 className={`inline-block pb-2 leading-[1.1] text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r bg-clip-text text-transparent ${
             darkMode 
               ? 'from-cyan-400 to-blue-400' 
               : 'from-orange-600 to-red-600'
@@ -181,17 +197,23 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                 Follow Me
               </h4>
               <div className="flex space-x-4">
-                {['GitHub', 'LinkedIn', 'Twitter'].map((platform) => (
+                {[
+                  { label: 'GitHub', href: 'https://github.com/soundharrajv/' },
+                  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/soundhar-raj-v-7019a22b1/' },
+                  { label: 'Portfolio', href: 'https://github.com/SOUNDHARRAJV/portfolio' }
+                ].map((platform) => (
                   <a
-                    key={platform}
-                    href="#"
+                    key={platform.label}
+                    href={platform.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${
                       darkMode 
                         ? 'bg-slate-800/50 text-gray-400 hover:text-cyan-400 border border-slate-700' 
                         : 'bg-gray-100 text-gray-600 hover:text-orange-600 border border-gray-200'
                     }`}
                   >
-                    {platform}
+                    {platform.label}
                   </a>
                 ))}
               </div>
@@ -362,6 +384,20 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                   </>
                 )}
               </button>
+
+              {statusMessage && (
+                <p
+                  className={`text-sm text-center ${
+                    submitStatus === 'success'
+                      ? darkMode
+                        ? 'text-emerald-400'
+                        : 'text-emerald-600'
+                      : 'text-red-400'
+                  }`}
+                >
+                  {statusMessage}
+                </p>
+              )}
             </form>
           </div>
         </div>

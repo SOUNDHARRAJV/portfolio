@@ -1,0 +1,7 @@
+[build]
+  publish = "dist"
+
+[[redirects]]
+  from = "/api/contact"
+  to = "/.netlify/functions/contact"
+  status = 200

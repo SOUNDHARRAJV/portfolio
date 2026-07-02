@@ -7,6 +7,13 @@ interface HeroProps {
   darkMode: boolean;
 }
 
+const stats = [
+  { label: 'DSA Problems Solved', value: 350, suffix: '+' },
+  { label: 'Full-Stack Projects', value: 3, suffix: '' },
+  { label: 'Hackathons', value: 4, suffix: '+' },
+  { label: 'Core Technologies', value: 10, suffix: '+' }
+];
+
 const Hero: React.FC<HeroProps> = ({ darkMode }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [statsVisible, setStatsVisible] = useState(false);
@@ -24,13 +31,6 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
     const timer = setTimeout(() => setStatsVisible(true), 1000);
     return () => clearTimeout(timer);
   }, []);
-
-  const stats = [
-    { label: 'Projects Completed', value: 50, suffix: '+' },
-    { label: 'Happy Clients', value: 25, suffix: '+' },
-    { label: 'Years Experience', value: 5, suffix: '+' },
-    { label: 'Technologies', value: 20, suffix: '+' }
-  ];
 
   const [counters, setCounters] = useState(stats.map(() => 0));
 
@@ -103,14 +103,15 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
               <img src={srkImage} alt="Profile" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
+
           </div>
 
           <div className="space-y-6">
-            <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000 ${darkMode ? 'from-white via-cyan-200 to-blue-400' : 'from-gray-900 via-orange-600 to-red-600'}`}>
-              Creative Developer
+            <h1 className={`inline-block pb-2 leading-[1.1] text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000 ${darkMode ? 'from-white via-cyan-200 to-blue-400' : 'from-gray-900 via-orange-600 to-red-600'}`}>
+              Soundhar Raj V
             </h1>
             <p className={`text-xl md:text-2xl font-light max-w-3xl mx-auto transition-colors duration-500 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              Crafting digital experiences that blend innovation with elegant design
+              Full Stack Developer building scalable web apps with React, TypeScript &amp; Supabase — bringing an AgriTech engineer's problem-solving edge to software.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">

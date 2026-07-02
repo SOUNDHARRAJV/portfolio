@@ -81,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, setDarkMode, activeSection })
                   ? 'from-cyan-400 to-blue-400' 
                   : 'from-orange-600 to-red-600'
               }`}>
-                Portfolio
+                Soundhar Raj
               </span>
             </div>
 

@@ -9,7 +9,9 @@ interface CVModalProps {
 const CVModal: React.FC<CVModalProps> = ({ onClose, darkMode }) => {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-xl max-w-2xl w-full relative p-6 overflow-y-auto max-h-[90vh]">
+      <div className={`rounded-xl shadow-xl max-w-2xl w-full relative p-6 overflow-y-auto max-h-[90vh] ${
+        darkMode ? 'bg-slate-900 text-gray-300' : 'bg-white text-gray-800'
+      }`}>
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -19,8 +21,8 @@ const CVModal: React.FC<CVModalProps> = ({ onClose, darkMode }) => {
         </button>
 
         {/* CV Content */}
-        <div className="text-sm space-y-3 dark:text-gray-300 text-gray-800">
-          <h2 className="text-2xl font-bold mb-4 text-center text-cyan-600 dark:text-cyan-400">
+        <div className="text-sm space-y-3">
+          <h2 className={`text-2xl font-bold mb-4 text-center ${darkMode ? 'text-cyan-400' : 'text-cyan-600'}`}>
             Soundhar Raj V — Curriculum Vitae
           </h2>
 
@@ -29,18 +31,17 @@ const CVModal: React.FC<CVModalProps> = ({ onClose, darkMode }) => {
           <p><strong>Phone:</strong> +91 63808 31039</p>
           <p><strong>Department:</strong> Agricultural Engineering</p>
           <p><strong>College:</strong> Bannari Amman Institute of Technology</p>
-          <p><strong>Technical Skills:</strong> React, Tailwind CSS, TypeScript, GitHub, Firebase, REST APIs</p>
+          <p><strong>Technical Skills:</strong> React, TypeScript, Tailwind CSS, Supabase, Firebase, Python, Java, SQL</p>
           <p><strong>Projects:</strong></p>
           
           <ul className="list-disc list-inside ml-4">
-            <li>Portfolio Website</li>
-            <li>Smart Notes Platform</li>
-            <li>After-Sales Service Web App</li>
-            <li>Agri Ecommerce website</li>
+            <li>Centralised Approval Management Portal (React, TypeScript, Supabase, PostgreSQL)</li>
+            <li>SmartNotes — AI-Powered Note Sharing Platform (React, Firebase)</li>
+            <li>SRK Farms — Farm-to-Home Product Listing Platform</li>
           </ul>
 
-          <p><strong>Languages:</strong> English, Tamil</p>
-          <p><strong>Hobbies:</strong> UI/UX Design, Frontend Development, Agri-Tech Innovations</p>
+          <p><strong>Coding Profile:</strong> 350+ problems solved on LeetCode</p>
+          <p><strong>Hackathons:</strong> YUGAM, CODECRAZE, SIH 2025, Hacksagon 2026</p>
         </div>
 
         {/* Download Button */}
